@@ -6,4 +6,3 @@
 void lexer(const char *input, token_list_t *list);
 
 #endif
-
