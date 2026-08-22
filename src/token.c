@@ -1,13 +1,11 @@
 #include <stdio.h>
 #include <string.h>
-
 #include "token.h"
 
 void token_list_init(token_list_t *list)
 {
-    if (list == NULL) {
+    if (list == NULL)
         return;
-    }
 
     list->count = 0;
 }
@@ -18,13 +16,11 @@ void token_add(token_list_t *list,
 {
     token_t *t;
 
-    if (list == NULL || text == NULL) {
+    if (list == NULL || text == NULL)
         return;
-    }
 
-    if (list->count >= MAX_TOKENS) {
+    if (list->count >= MAX_TOKENS)
         return;
-    }
 
     t = &list->tokens[list->count];
 
@@ -38,7 +34,8 @@ void token_add(token_list_t *list,
 
 const char *token_name(token_type_t type)
 {
-    switch (type) {
+    switch (type)
+    {
         case TOKEN_WORD:
             return "WORD";
 
@@ -69,14 +66,13 @@ void token_print(const token_list_t *list)
 {
     int i;
 
-    if (list == NULL) {
+    if (list == NULL)
         return;
-    }
 
-    printf("\n");
-    printf("------------ TOKENS ------------\n");
+    printf("\n------------ TOKENS ------------\n");
 
-    for (i = 0; i < list->count; i++) {
+    for (i = 0; i < list->count; i++)
+    {
         printf("%d : %-12s %s\n",
                i,
                token_name(list->tokens[i].type),

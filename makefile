@@ -1,16 +1,18 @@
 CC = gcc
-CFLAGS = -Wall -Wextra -std=c11 -Iinclude
+CFLAGS = -Wall -Wextra -Iinclude
 
-TARGET = shellforge
+SRC = src/token.c \
+      src/lexer.c \
+      src/parser.c \
+      src/expand.c \
+      src/builtin.c \
+      src/executor.c \
+      src/main.c
 
-SRC = src/main.c src/lexer.c src/token.c
 OBJ = $(SRC:.c=.o)
 
-$(TARGET): $(OBJ)
-	$(CC) $(OBJ) -lreadline -o $(TARGET)
-
-src/%.o: src/%.c
-	$(CC) $(CFLAGS) -c $< -o $@
+shellforge: $(OBJ)
+	$(CC) $(CFLAGS) $(OBJ) -o shellforge
 
 clean:
-	rm -f $(OBJ) $(TARGET)
+	rm -f $(OBJ) shellforge
